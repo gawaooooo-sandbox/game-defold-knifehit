@@ -1,0 +1,19 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[project]
+title = knifehit
+
+[display]
+width = 750
+height = 1334
+
+[physics]
+scale = 0.6
+
+[input]
+use_accelerometer = 0
+
