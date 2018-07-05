@@ -5,8 +5,10 @@ function init(self)
 	self.rotationSpeed = 150
 	print(go.get_position())
 	print(go.get_rotation())
-	--self.angle = 0
-	self.angle = -90
+
+	self.targetAngle = -90
+	self.angle = 0
+
 --	local position = go.get_position()
 --	local distance_to_target = vmath.length(target - position)
 --	local direction = vmath.normalize(target - position)
@@ -40,15 +42,17 @@ function update(self, dt)
 	-- Add update code here
 	-- Remove this function if not needed
 
-	self.angle = self.angle - self.rotationSpeed * dt
-	local rad = math.rad(self.angle)
+	self.targetAngle = self.targetAngle - self.rotationSpeed * dt
+	local rad = math.rad(self.targetAngle)
 
 	local x = self.targetWidth / 2 * math.cos(rad) + self.targetPositionX
 	local y = self.targetHeight / 2 * math.sin(rad) + self.targetPositionY
 	local vec = vmath.vector3(x, y, 0)
 	go.set_position(vec)
-	--go.set_rotation(vmath.quat_axis_angle(vmath.vector3(0, 0, 1), rad))
-	--go.set_rotation(vmath.quat_axis_angle(vmath.vector3(0, 0, 0), 0))
+
+	self.angle = self.angle - self.rotationSpeed * dt
+	local knifeRad = math.rad(self.angle)	
+	go.set_rotation(vmath.quat_axis_angle(vmath.vector3(0, 0, 1), knifeRad))
 
 	
 	-- move knifes
