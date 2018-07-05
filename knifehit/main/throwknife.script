@@ -18,7 +18,10 @@ end
 
 local function throwComplete(self)
 	print("call throw complete")
+
+	--print(go.get("/target", "angle"))
 	-- check hit
+	msg.post("main#script", "test", {angle = self.angle})
 
 	-- reset canThrow, resetKnifePosition
 
@@ -70,9 +73,11 @@ function update(self, dt)
 	end
 	]]
 
+	--print(go.get_position())
+
 	-- fall out
 	if self.fallOut == true then
-		self.angle = self.angle - 500 * dt
+		self.angle = self.angle - 600 * dt
 		go.set_rotation(vmath.quat_axis_angle(vmath.vector3(0, 0, 1), math.rad(self.angle)))
 	end
 end

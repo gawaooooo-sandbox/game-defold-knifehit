@@ -1,6 +1,6 @@
 components {
-  id: "script"
-  component: "/main/throwknife.script"
+  id: "hitKnife"
+  component: "/main/hitKnife.script"
   position {
     x: 0.0
     y: 0.0
@@ -41,14 +41,14 @@ embedded_components {
   "mass: 0.0\n"
   "friction: 0.1\n"
   "restitution: 0.5\n"
-  "group: \"throwKnife\"\n"
-  "mask: \"hitKnife\"\n"
+  "group: \"hitKnife\"\n"
+  "mask: \"throwKnife\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
   "    position {\n"
   "      x: 0.0\n"
-  "      y: 110.0\n"
+  "      y: 70.0\n"
   "      z: 0.0\n"
   "    }\n"
   "    rotation {\n"
@@ -61,7 +61,7 @@ embedded_components {
   "    count: 3\n"
   "  }\n"
   "  data: 20.0\n"
-  "  data: 10.0\n"
+  "  data: 50.0\n"
   "  data: 10.0\n"
   "}\n"
   "linear_damping: 0.0\n"
