@@ -3,8 +3,8 @@ function init(self)
 	-- Remove this function if not needed
 	print("call hitknife init")
 	self.rotationSpeed = 150
-	print(go.get_position())
-	print(go.get_rotation())
+--	print(go.get_position())
+--	print(go.get_rotation())
 
 	self.targetAngle = -90
 	self.angle = 0
@@ -18,12 +18,10 @@ function init(self)
 	self.targetPosition = go.get_position("/target")
 	self.targetPositionX = go.get("/target", "position.x")
 	self.targetPositionY = go.get("/target", "position.y")
-	print(self.targetPositionX)
+--	print(self.targetPositionX)
 	
 	self.targetWidth = go.get("/target#sprite", "size.x")
 	self.targetHeight = go.get("/target#sprite", "size.y")
-
-	print(go.get("/target#sprite", "size.x"))
 end
 
 function final(self)
@@ -82,6 +80,11 @@ end
 function on_message(self, message_id, message, sender)
 	-- Add message-handling code here
 	-- Remove this function if not needed
+	if message_id == hash("collision_response") then
+		print("hitknife collision!!!!")
+		print(message.group)
+	end
+	
 end
 
 function on_input(self, action_id, action)

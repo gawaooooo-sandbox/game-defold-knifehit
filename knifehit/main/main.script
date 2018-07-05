@@ -9,10 +9,10 @@ local function test(self, angle)
 	--local throwKnifePosition = vmath.vector3(math.random(0, 600), 935, 0) 
 	--local throwKnifePosition = go.get_position("/throwknife")
 	local throwKnifePosition = vmath.vector3(0, 0, 0)
-	print(throwKnifePosition)
+--	print(throwKnifePosition)
 	--local targetRotation = go.get_rotation("/target")
 	local targetRotation = vmath.quat(0, 0, 0, 0)
-	print(targetRotation)
+--	print(targetRotation)
 	-- factory.create(url, [position], [rotation], [properties], [scale])
 	--local id = factory.create("#knifefactory", throwKnifePosition)
 	--local id = factory.create("#knifefactory", throwKnifePosition, targetRotation)
@@ -21,6 +21,14 @@ local function test(self, angle)
 	self.knifes[id] = true
 end
 
+local function resetKnifes(self)
+	print("call main resetKnifes")
+	for knife,_ in pairs(self.knifes) do
+		go.delete(knife)
+		self.knifes[knife] = nil
+	end
+end
+	
 function init(self)
 	-- Add initialization code here
 	-- Remove this function if not needed
@@ -39,28 +47,34 @@ function update(self, dt)
 	-- Remove this function if not needed
 
 	-- move knifes
-	for knife,_ in pairs(self.knifes) do
-		local pos = go.get_position(knife)
+	--for knife,_ in pairs(self.knifes) do
+		--local pos = go.get_position(knife)
 		--pos = pos + vmath.vector3(0, -self.speed * dt, 0)
 		--go.set_position(pos, knife)
 		--if pos.y <= -50 then
 		--	go.delete(coin)
 		--	self.knifes[knife] = nil
 		--end
-	end
+	--end
 end
 
 function on_message(self, message_id, message, sender)
 	-- Add message-handling code here
 	-- Remove this function if not needed
 	print("main script on message")
-	print(message.angle)
+	--print(message.angle)
 	if message_id == hash("collision_response") then
+		print("collision!!!!")
 		print(message.group)
 	end
 
 	if message_id == hash("test") then
 		test(self)
+	end
+
+	if message_id == hash("gameover") then
+		print("call main game over")
+		resetKnifes(self)
 	end
 end
 
