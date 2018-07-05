@@ -1,8 +1,8 @@
 # App manifest generated Wed Jul 04 2018 15:52:03 GMT+0900
-# Settings: Physics,Record,Release
+# Settings: Record,Profiler,Release
 platforms:
     js-web:
         context:
-            excludeLibs: ["BulletDynamics","BulletCollision","LinearMath","Box2D","physics","record","vpx","engine"]
-            excludeSymbols: []
-            libs: ["engine_release","physics_null","record_null"]
+            excludeLibs: ["record","vpx","profilerext","engine"]
+            excludeSymbols: ["ProfilerExt"]
+            libs: ["engine_release","record_null"]
