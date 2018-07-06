@@ -17,3 +17,6 @@ scale = 0.6
 [input]
 use_accelerometer = 0
 
+[native_extension]
+app_manifest = /release.appmanifest
+
