@@ -1,28 +1,13 @@
-local function test(self, angle)
-	print("call main test function")
-
-	-- add knife..?
---	print(go.get_rotation("/target"))
---	print(go.get_position("/target"))
---	print(go.get_position("/throwknife"))
-
-	--local throwKnifePosition = vmath.vector3(math.random(0, 600), 935, 0) 
-	--local throwKnifePosition = go.get_position("/throwknife")
+local function hitKnife(self)
+	--print("call main hitKnife function")
 	local throwKnifePosition = vmath.vector3(0, 0, 0)
---	print(throwKnifePosition)
-	--local targetRotation = go.get_rotation("/target")
 	local targetRotation = vmath.quat(0, 0, 0, 0)
---	print(targetRotation)
-	-- factory.create(url, [position], [rotation], [properties], [scale])
-	--local id = factory.create("#knifefactory", throwKnifePosition)
-	--local id = factory.create("#knifefactory", throwKnifePosition, targetRotation)
 	local id = factory.create("#knifefactory")
-
 	self.knifes[id] = true
 end
 
 local function resetKnifes(self)
-	print("call main resetKnifes")
+--	print("call main resetKnifes")
 	for knife,_ in pairs(self.knifes) do
 		go.delete(knife)
 		self.knifes[knife] = nil
@@ -37,43 +22,17 @@ function init(self)
 	self.knifes = {}
 end
 
-function final(self)
-	-- Add finalization code here
-	-- Remove this function if not needed
-end
-
-function update(self, dt)
-	-- Add update code here
-	-- Remove this function if not needed
-
-	-- move knifes
-	--for knife,_ in pairs(self.knifes) do
-		--local pos = go.get_position(knife)
-		--pos = pos + vmath.vector3(0, -self.speed * dt, 0)
-		--go.set_position(pos, knife)
-		--if pos.y <= -50 then
-		--	go.delete(coin)
-		--	self.knifes[knife] = nil
-		--end
-	--end
-end
-
 function on_message(self, message_id, message, sender)
 	-- Add message-handling code here
 	-- Remove this function if not needed
-	print("main script on message")
-	--print(message.angle)
-	if message_id == hash("collision_response") then
-		print("collision!!!!")
-		print(message.group)
-	end
+	--print("main script on message")
 
-	if message_id == hash("test") then
-		test(self)
+	if message_id == hash("hitKnife") then
+		hitKnife(self)
 	end
 
 	if message_id == hash("gameover") then
-		print("call main game over")
+--		print("call main game over")
 		resetKnifes(self)
 	end
 end
@@ -81,15 +40,8 @@ end
 function on_input(self, action_id, action)
 	-- Add input-handling code here
 	-- Remove this function if not needed
-	-- 画面タッチやクリック入力した時。
 	if action_id == hash("touch") and action.pressed then
-		-- Touchとログを出力する。
-		print("Touch!")
+--		print("Touch!")
 		msg.post("throwknife#script", "throw")
 	end
-end
-
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Remove this function if not needed
 end
